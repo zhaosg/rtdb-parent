@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+    <style> .error {color: #f00;}</style>
+</head>
+<body>
+<h3 class="error">内部错误</h3>
+<!--<div th:text="${url}" class="error"></div>-->
+<div th:text="${exception.message}" class="error"></div>
+</body>
+</html>

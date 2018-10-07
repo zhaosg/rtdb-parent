@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.zhaosg.rtdb</groupId>
+	<artifactId>rtdb-parent</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>rtdb-parent</name>
+	<description>rtdb parent</description>
+	<properties>
+		<spring.version>3.2.4.RELEASE</spring.version>
+		<hibernate.version>4.1.0.Final</hibernate.version>
+		<commons-io.version>2.4</commons-io.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+		<axis2.version>1.7.4</axis2.version>
+
+		<!-- web -->
+		<jstl.version>1.2</jstl.version>
+		<taglibs.version>1.1.2</taglibs.version>
+		<jsp.version>2.2</jsp.version>
+		<servlet.version>3.0.1</servlet.version>
+		<el.version>2.2</el.version>
+
+		<libthrift.version>0.9.3</libthrift.version>
+		<kryo.version>3.0.3</kryo.version>
+		<fst.version>2.47</fst.version>
+
+		<!---->
+		<slf4j.version>1.7.5</slf4j.version>
+		<logback.version>1.0.13</logback.version>
+		<itext.version>5.5.10</itext.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.plugin.version>3.0</maven.compiler.plugin.version>
+		<maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
+		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
+		<build.plugins.plugin.version>2.1</build.plugins.plugin.version>
+	</properties>
+	<modules>
+		<module>rtdb-rpc</module>
+		<module>netty-learn</module>
+	</modules>
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
