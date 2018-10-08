@@ -20,25 +20,62 @@ import io.airlift.units.Duration;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.LongAdder;
 
 import static io.airlift.units.DataSize.Unit.MEGABYTE;
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 public class Main {
+    private static LongAdder counter = new LongAdder();
+
     public static void test() {
-        List<HostAndPort> addresses = ImmutableList.of(HostAndPort.fromParts("localhost", 99));
-        ThriftCodecManager codecManager = new ThriftCodecManager();
-        AddressSelector addressSelector = new SimpleAddressSelector(addresses, true);
-        DriftNettyClientConfig config = new DriftNettyClientConfig();
-        DriftNettyMethodInvokerFactory<?> methodInvokerFactory = DriftNettyMethodInvokerFactory.createStaticDriftNettyMethodInvokerFactory(config);
-        DriftClientFactory clientFactory = new DriftClientFactory(codecManager, methodInvokerFactory, addressSelector);
-        ScribeService scribeService = clientFactory.createDriftClient(ScribeService.class).get();
-        long t0=System.nanoTime();
+        new Thread(new StatTask()).start();
         for (int i = 0; i < 100; i++) {
-            scribeService.log(ImmutableList.of(new DriftLogEntry("category", "message")));
+            new Thread(new ClientTask()).start();
         }
-        System.out.println((System.nanoTime()-t0)*0.000001);
+    }
+
+    static class ClientTask implements Runnable {
+        @Override
+        public void run() {
+            List<HostAndPort> addresses = ImmutableList.of(HostAndPort.fromParts("localhost", 99));
+            ThriftCodecManager codecManager = new ThriftCodecManager();
+            AddressSelector addressSelector = new SimpleAddressSelector(addresses, true);
+            DriftNettyClientConfig config = new DriftNettyClientConfig();
+            DriftNettyMethodInvokerFactory<?> methodInvokerFactory = DriftNettyMethodInvokerFactory.createStaticDriftNettyMethodInvokerFactory(config);
+            DriftClientFactory clientFactory = new DriftClientFactory(codecManager, methodInvokerFactory, addressSelector);
+            ScribeService scribeService = clientFactory.createDriftClient(ScribeService.class).get();
+            while (true) {
+                scribeService.log(ImmutableList.of(new DriftLogEntry("category", "message")));
+                counter.increment();
+            }
+        }
+    }
+
+    static class StatTask implements Runnable {
+        @Override
+        public void run() {
+            long t0 = System.nanoTime();
+            long c = counter.longValue();
+            while (true) {
+                long now = System.nanoTime();
+                long t1 = (now - t0);
+                if (t1 > 1000000000) {
+                    long x = (counter.longValue() - c);
+                    t0 = now;
+                    long c1 = counter.longValue();
+                    c = c1;
+                    System.out.println(x + " q/s");
+                }
+                try {
+                    Thread.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     public static void main(String[] args) {
@@ -47,10 +84,10 @@ public class Main {
         DriftNettyServerConfig config = new DriftNettyServerConfig()
                 .setPort(99)
                 .setAcceptBacklog(101)
-                .setIoThreadCount(202)
-                .setWorkerThreadCount(303)
+                .setIoThreadCount(100)
+                .setWorkerThreadCount(100)
                 .setRequestTimeout(new Duration(33, MINUTES))
-                .setMaxFrameSize(new DataSize(55, MEGABYTE))
+                .setMaxFrameSize(new DataSize(100, MEGABYTE))
                 .setSslContextRefreshTime(new Duration(33, MINUTES))
                 .setAllowPlaintext(true)
                 .setSslEnabled(false)
