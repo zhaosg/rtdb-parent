@@ -17,20 +17,17 @@ import io.airlift.drift.transport.netty.server.DriftNettyServerConfig;
 import io.airlift.drift.transport.netty.server.DriftNettyServerTransportFactory;
 import io.airlift.units.DataSize;
 import io.airlift.units.Duration;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.LongAdder;
-
 import static io.airlift.units.DataSize.Unit.MEGABYTE;
 import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 public class Main {
-    private static LongAdder counter = new LongAdder();
+    private static StatInfo counter = new StatInfo();
 
     public static void test() {
-        new Thread(new StatTask()).start();
+        counter.init();
         for (int i = 0; i < 100; i++) {
             new Thread(new ClientTask()).start();
         }
@@ -49,32 +46,12 @@ public class Main {
             while (true) {
                 scribeService.log(ImmutableList.of(new DriftLogEntry("category", "message")));
                 counter.increment();
-            }
-        }
-    }
-
-    static class StatTask implements Runnable {
-        @Override
-        public void run() {
-            long t0 = System.nanoTime();
-            long c = counter.longValue();
-            while (true) {
-                long now = System.nanoTime();
-                long t1 = (now - t0);
-                if (t1 > 1000000000) {
-                    long x = (counter.longValue() - c);
-                    t0 = now;
-                    long c1 = counter.longValue();
-                    c = c1;
-                    System.out.println(x + " q/s");
-                }
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(20);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-
         }
     }
 
