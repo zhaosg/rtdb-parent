@@ -1,4 +1,4 @@
-package netty;
+package cn.zhaosg.rtdb.netty;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;
@@ -7,10 +7,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.Promise;
-import raft.AppendLogRequest;
-import raft.EchoClientHandler;
-import raft.KryoDecoder;
-import raft.KryoEncoder;
 
 import static io.netty.channel.ChannelOption.CONNECT_TIMEOUT_MILLIS;
 

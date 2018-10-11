@@ -1,4 +1,4 @@
-package kryo;
+package cn.zhaosg.rtdb.serializers.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;

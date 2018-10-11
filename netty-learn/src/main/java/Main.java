@@ -28,7 +28,7 @@ public class Main {
 
     public static void test() {
         counter.init();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             new Thread(new ClientTask()).start();
         }
     }
@@ -61,8 +61,8 @@ public class Main {
         DriftNettyServerConfig config = new DriftNettyServerConfig()
                 .setPort(99)
                 .setAcceptBacklog(101)
-                .setIoThreadCount(100)
-                .setWorkerThreadCount(100)
+                .setIoThreadCount(200)
+                .setWorkerThreadCount(200)
                 .setRequestTimeout(new Duration(33, MINUTES))
                 .setMaxFrameSize(new DataSize(100, MEGABYTE))
                 .setSslContextRefreshTime(new Duration(33, MINUTES))

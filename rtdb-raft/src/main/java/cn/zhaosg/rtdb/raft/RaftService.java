@@ -1,4 +1,4 @@
-package raft;
+package cn.zhaosg.rtdb.raft;
 
 public interface RaftService {
     AppendLogResponse appendLog(AppendLogRequest appendLogRequest);

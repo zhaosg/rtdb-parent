@@ -1,9 +1,10 @@
-package raft;
+package cn.zhaosg.rtdb.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import kryo.KryoSerializer;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
+import cn.zhaosg.rtdb.serializers.kryo.KryoSerializer;
 
 public class KryoEncoder extends MessageToByteEncoder<AppendLogRequest> {
 	@Override

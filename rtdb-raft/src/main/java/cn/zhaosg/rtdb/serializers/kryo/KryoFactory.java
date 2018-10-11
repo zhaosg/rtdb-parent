@@ -1,11 +1,11 @@
-package kryo;
+package cn.zhaosg.rtdb.serializers.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.serializers.DefaultSerializers;
 import de.javakaffee.kryoserializers.*;
-import raft.AppendLogRequest;
-import raft.AppendLogResponse;
-import raft.LogEntry;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
+import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.LogEntry;
 
 import java.lang.reflect.InvocationHandler;
 import java.math.BigDecimal;

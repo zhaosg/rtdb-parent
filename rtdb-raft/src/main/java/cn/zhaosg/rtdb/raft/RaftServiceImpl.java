@@ -1,4 +1,4 @@
-package raft;
+package cn.zhaosg.rtdb.raft;
 
 
 import io.netty.bootstrap.Bootstrap;
@@ -6,6 +6,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import cn.zhaosg.rtdb.netty.EchoClientHandler;
+import cn.zhaosg.rtdb.netty.KryoDecoder;
+import cn.zhaosg.rtdb.netty.KryoEncoder;
 
 public class RaftServiceImpl implements RaftService {
 

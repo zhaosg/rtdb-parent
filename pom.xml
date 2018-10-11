@@ -41,7 +41,7 @@
 	<modules>
 		<module>rtdb-rpc</module>
 		<module>netty-learn</module>
-        <module>rrdb-raft</module>
+        <module>rtdb-raft</module>
     </modules>
 	<repositories>
 		<repository>

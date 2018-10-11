@@ -1,6 +1,6 @@
-package raft;
-
-import netty.NettyClient;
+import cn.zhaosg.rtdb.netty.NettyClient;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
+import cn.zhaosg.rtdb.raft.Member;
 
 import java.util.ArrayList;
 import java.util.List;

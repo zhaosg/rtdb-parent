@@ -1,18 +1,23 @@
-package raft;
+package cn.zhaosg.rtdb.netty;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
 
-public class RaftServerHandler extends ChannelInboundHandlerAdapter {
-    private final ThreadLocal<RaftService> holder = ThreadLocal.withInitial(() -> new RaftServiceImpl());
+public class RaftClientHandler extends ChannelInboundHandlerAdapter {
+
+    public RaftClientHandler() {
+
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        ctx.writeAndFlush(new AppendLogRequest(1, 1, 1, 1, null, 1));
+    }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        if (msg instanceof AppendLogRequest) {
-            AppendLogRequest request = (AppendLogRequest) msg;
-            AppendLogResponse response = holder.get().appendLog(request);
-            ctx.writeAndFlush(response);
-        }
+        ctx.write(msg);
     }
 
     @Override

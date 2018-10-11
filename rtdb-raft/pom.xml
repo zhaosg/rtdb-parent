@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>rrdb-raft</artifactId>
+    <artifactId>rtdb-raft</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>

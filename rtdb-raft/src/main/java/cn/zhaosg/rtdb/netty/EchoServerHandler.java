@@ -13,11 +13,15 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package raft;
+package cn.zhaosg.rtdb.netty;
 
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
+import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.RaftService;
+import cn.zhaosg.rtdb.raft.RaftServiceImpl;
 
 /**
  * Handler implementation for the echo server.

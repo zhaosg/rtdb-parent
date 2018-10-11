@@ -1,4 +1,4 @@
-package raft;
+package cn.zhaosg.rtdb.raft;
 
 public class AppendLogRequest {
     private long term;//领导人的任期号

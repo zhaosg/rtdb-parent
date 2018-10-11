@@ -13,12 +13,13 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package raft;
+package cn.zhaosg.rtdb.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
 
 /**
  * Handler implementation for the echo client.  It initiates the ping-pong

@@ -1,4 +1,4 @@
-package raft;
+package cn.zhaosg.rtdb.netty;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
