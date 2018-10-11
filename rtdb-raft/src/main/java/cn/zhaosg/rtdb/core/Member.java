@@ -1,4 +1,4 @@
-package cn.zhaosg.rtdb.raft;
+package cn.zhaosg.rtdb.core;
 
 public class Member {
     private String id;

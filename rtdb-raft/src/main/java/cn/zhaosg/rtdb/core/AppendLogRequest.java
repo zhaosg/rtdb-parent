@@ -1,4 +1,4 @@
-package cn.zhaosg.rtdb.raft;
+package cn.zhaosg.rtdb.core;
 
 public class AppendLogRequest {
     private long term;//领导人的任期号
