@@ -1,4 +1,4 @@
-package cn.zhaosg.rtdb.netty;
+package cn.zhaosg.rtdb.raft;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

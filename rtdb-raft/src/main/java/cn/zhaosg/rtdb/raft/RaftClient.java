@@ -1,5 +1,7 @@
-package cn.zhaosg.rtdb.netty;
+package cn.zhaosg.rtdb.raft;
 
+import cn.zhaosg.rtdb.netty.KryoDecoder;
+import cn.zhaosg.rtdb.netty.KryoEncoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -20,6 +22,7 @@ public class RaftClient {
                     .channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.SO_KEEPALIVE, true)
+                    .handler(new LoggingHandler(LogLevel.INFO))
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {

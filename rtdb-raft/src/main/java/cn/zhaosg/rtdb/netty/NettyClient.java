@@ -46,15 +46,17 @@ public class NettyClient {
                 if (channelFuture.isSuccess()) {
                     Channel cc = (Channel) channelFuture.getNow();
                     ChannelFuture sendFuture = cc.writeAndFlush(request);
-//                    sendFuture.addListener(channelFuture -> {
-//                        try {
-//                            if (!channelFuture.isSuccess()) {
-////                    fatalError(channelFuture.cause());
-//                            }
-//                        } catch (Throwable t) {
-////                fatalError(t);
-//                        }
-//                    });
+                    sendFuture.addListener(cf -> {
+                        try {
+                            if (!cf.isSuccess()) {
+//                    fatalError(channelFuture.cause());
+                            } else {
+                                System.out.println("ok");
+                            }
+                        } catch (Throwable t) {
+//                fatalError(t);
+                        }
+                    });
                 } else {
 //                        fatalError(new ConnectionFailedException(request.getAddress(), channelFuture.cause()));
                 }

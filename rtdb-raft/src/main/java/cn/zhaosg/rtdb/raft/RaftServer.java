@@ -1,12 +1,13 @@
-package cn.zhaosg.rtdb.netty;
+package cn.zhaosg.rtdb.raft;
 
-import io.netty.bootstrap.Bootstrap;
+import cn.zhaosg.rtdb.netty.KryoDecoder;
+import cn.zhaosg.rtdb.netty.KryoEncoder;
+import cn.zhaosg.rtdb.netty.NettyClient;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class RaftServer {
 
@@ -53,29 +54,8 @@ public class RaftServer {
     }
 
     public static void test() throws Exception {
-        EventLoopGroup group = new NioEventLoopGroup();
-        try {
-            Bootstrap b = new Bootstrap();
-            b.group(group)
-                    .channel(NioSocketChannel.class)
-                    .option(ChannelOption.TCP_NODELAY, true)
-                    .option(ChannelOption.SO_KEEPALIVE, true)
-                    .handler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        public void initChannel(SocketChannel ch) throws Exception {
-                            ChannelPipeline p = ch.pipeline();
-                            ch.pipeline().addLast("decoder", new KryoDecoder());
-                            ch.pipeline().addLast("encoder", new KryoEncoder());
-                            p.addLast(new RaftClientHandler());
-                        }
-                    });
-
-            ChannelFuture f = b.connect("127.0.0.1", 199).sync();
-
-            f.channel().closeFuture().sync();
-        } finally {
-            // Shut down the event loop to terminate all threads.
-            group.shutdownGracefully();
-        }
+        NettyClient client = new NettyClient();
+        client.init("127.0.0.1", 199);
+        client.send(new AppendLogRequest(1, 1, 1, 1, null, 1));
     }
 }
