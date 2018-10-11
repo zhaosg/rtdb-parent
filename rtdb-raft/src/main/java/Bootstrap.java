@@ -26,7 +26,7 @@ public class Bootstrap {
             Thread.sleep(2000);
             AppendLogRequest request = new AppendLogRequest(1, 1, 1, 1, null, 1);
             RaftService service = RaftService.instance();
-            for (int i = 0; i < 20000; i++) {
+            for (int i = 0; i < 100; i++) {
                 service.remoteAppendLog(members.get(0), request, (result) -> {
                     System.out.println(JSON.toJSONString(result));
                 });
