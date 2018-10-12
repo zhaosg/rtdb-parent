@@ -1,4 +1,4 @@
-package cn.zhaosg.rtdb.core;
+package cn.zhaosg.rtdb.raft;
 
 public class AppendLogResponse {
     private  long term;//当前的任期号，用于领导人去更新自己

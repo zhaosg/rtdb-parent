@@ -1,7 +1,7 @@
 package cn.zhaosg.rtdb.base;
 
-import cn.zhaosg.rtdb.core.AppendLogRequest;
-import cn.zhaosg.rtdb.core.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
+import cn.zhaosg.rtdb.raft.AppendLogResponse;
 import cn.zhaosg.rtdb.serializers.KryoSerializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

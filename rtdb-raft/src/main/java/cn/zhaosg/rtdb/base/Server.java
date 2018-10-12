@@ -1,9 +1,9 @@
 package cn.zhaosg.rtdb.base;
 
 import cn.zhaosg.rtdb.Cfg;
-import cn.zhaosg.rtdb.core.AppendLogRequest;
-import cn.zhaosg.rtdb.core.AppendLogResponse;
-import cn.zhaosg.rtdb.core.RaftService;
+import cn.zhaosg.rtdb.raft.AppendLogRequest;
+import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.RaftService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

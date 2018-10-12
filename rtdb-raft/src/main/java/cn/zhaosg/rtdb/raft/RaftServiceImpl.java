@@ -1,4 +1,4 @@
-package cn.zhaosg.rtdb.core;
+package cn.zhaosg.rtdb.raft;
 
 
 import cn.zhaosg.rtdb.base.Client;

@@ -1,4 +1,4 @@
-package cn.zhaosg.rtdb.core;
+package cn.zhaosg.rtdb.raft;
 
 public class LogEntry {
     private  String category;

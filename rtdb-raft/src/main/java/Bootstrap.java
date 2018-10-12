@@ -1,9 +1,7 @@
 import cn.zhaosg.rtdb.Cfg;
 import cn.zhaosg.rtdb.base.Server;
-import cn.zhaosg.rtdb.core.AppendLogRequest;
-import cn.zhaosg.rtdb.core.Member;
-import cn.zhaosg.rtdb.core.RaftService;
-import com.alibaba.fastjson.JSON;
+import cn.zhaosg.rtdb.raft.Member;
+import cn.zhaosg.rtdb.raft.RaftService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

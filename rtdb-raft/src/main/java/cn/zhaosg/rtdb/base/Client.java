@@ -1,6 +1,6 @@
 package cn.zhaosg.rtdb.base;
 
-import cn.zhaosg.rtdb.core.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendLogResponse;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
