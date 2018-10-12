@@ -1,7 +1,7 @@
 import cn.zhaosg.rtdb.Cfg;
 import cn.zhaosg.rtdb.base.Server;
 import cn.zhaosg.rtdb.raft.Member;
-import cn.zhaosg.rtdb.raft.RaftService;
+import cn.zhaosg.rtdb.raft.LogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +22,7 @@ public class Bootstrap {
             members.add(new Member("123", "127.0.0.1", Cfg.port()));
             server.start();
             Thread.sleep(2000);
-            RaftService service = RaftService.instance();
+            LogService service = LogService.instance();
 //            System.out.println("压力测试开始");
 //            for (int i = 0; i <1000; i++) {
 //                AppendLogRequest request = new AppendLogRequest(i, 1, 1, 1, null, 1);

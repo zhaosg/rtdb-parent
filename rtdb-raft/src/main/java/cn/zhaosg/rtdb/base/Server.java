@@ -3,7 +3,7 @@ package cn.zhaosg.rtdb.base;
 import cn.zhaosg.rtdb.Cfg;
 import cn.zhaosg.rtdb.raft.AppendLogRequest;
 import cn.zhaosg.rtdb.raft.AppendLogResponse;
-import cn.zhaosg.rtdb.raft.RaftService;
+import cn.zhaosg.rtdb.raft.LogService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -62,7 +62,7 @@ public class Server implements Runnable {
         public void channelRead(ChannelHandlerContext ctx, Object msg) {
             if (msg instanceof AppendLogRequest) {
                 AppendLogRequest request = (AppendLogRequest) msg;
-                AppendLogResponse response = RaftService.instance().appendLog(request);
+                AppendLogResponse response = LogService.instance().appendLog(request);
                 ctx.writeAndFlush(response);
                 Server.statInfo.increment();
             }

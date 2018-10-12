@@ -5,7 +5,7 @@ import cn.zhaosg.rtdb.base.Client;
 
 import java.util.function.Consumer;
 
-public class RaftServiceImpl implements RaftService {
+public class LogServiceImpl implements LogService {
     private Client client = new Client();
 
     public AppendLogResponse appendLog(AppendLogRequest appendLogRequest) {

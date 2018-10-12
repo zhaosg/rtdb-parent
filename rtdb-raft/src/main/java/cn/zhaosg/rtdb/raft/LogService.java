@@ -2,10 +2,10 @@ package cn.zhaosg.rtdb.raft;
 
 import java.util.function.Consumer;
 
-public interface RaftService {
-    ThreadLocal<RaftService> holder = ThreadLocal.withInitial(() -> new RaftServiceImpl());
+public interface LogService {
+    ThreadLocal<LogService> holder = ThreadLocal.withInitial(() -> new LogServiceImpl());
 
-    static RaftService instance() {
+    static LogService instance() {
         return holder.get();
     }
 
