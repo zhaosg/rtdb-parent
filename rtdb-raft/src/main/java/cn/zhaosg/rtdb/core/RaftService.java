@@ -11,7 +11,7 @@ public interface RaftService {
 
     AppendLogResponse appendLog(AppendLogRequest appendLogRequest);
 
-    void remoteAppendLog(Member member, AppendLogRequest appendLogRequest, Consumer<Object> dataReady);
+    void remoteAppendLog(Member member, AppendLogRequest appendLogRequest, Consumer<AppendLogResponse> dataReady);
 
 
 }

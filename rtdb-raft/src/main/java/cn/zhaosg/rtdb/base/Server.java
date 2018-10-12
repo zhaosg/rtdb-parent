@@ -11,6 +11,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class Server implements Runnable {
+    private static StatInfo statInfo = new StatInfo();
+
     public Server() {
     }
 
@@ -18,6 +20,7 @@ public class Server implements Runnable {
     }
 
     public void start() {
+        statInfo.init();
         new Thread(this).start();
     }
 
@@ -61,6 +64,7 @@ public class Server implements Runnable {
                 AppendLogRequest request = (AppendLogRequest) msg;
                 AppendLogResponse response = RaftService.instance().appendLog(request);
                 ctx.writeAndFlush(response);
+                Server.statInfo.increment();
             }
         }
 

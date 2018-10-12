@@ -1,3 +1,5 @@
+package cn.zhaosg.rtdb.base;
+
 import java.util.concurrent.atomic.LongAdder;
 
 public class StatInfo {
@@ -27,11 +29,12 @@ public class StatInfo {
             if (lastTerm > -1) {
                 avgQps = nowCount * period * 1.0 / testRunningTime;
                 latestQps = (nowCount - startCount);
-                System.out.println(lastTerm + "---平均" + (int) (getAvgQps()) + " q/s,瞬时" + getLatestQps() + " q/s,");
             } else {
                 avgQps = 0;
                 latestQps = 0;
+                lastTerm=1;
             }
+            System.out.println(lastTerm + "---平均" + (int) (getAvgQps()) + " q/s,瞬时" + getLatestQps() + " q/s,");
             startCount = nowCount;
             lastTerm = term;
         }

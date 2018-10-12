@@ -8,12 +8,15 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.Promise;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.function.Consumer;
 
 import static io.netty.channel.ChannelOption.CONNECT_TIMEOUT_MILLIS;
 
 public class Client {
+    private Logger logger = LoggerFactory.getLogger(Client.class);
     private EventLoopGroup group;
     private String host;
     private int port;
@@ -38,14 +41,14 @@ public class Client {
 
     public <T> void send(Object request, Consumer<T> dataReady) {
         Bootstrap b = new Bootstrap();
-        RaftClientHandler hander = new RaftClientHandler((object) -> {
+        final RaftClientHandler hander = new RaftClientHandler((object) -> {
             if (object instanceof AppendLogResponse) {
                 dataReady.accept((T) object);
             }
         });
         b.group(group).channel(NioSocketChannel.class).
                 option(ChannelOption.TCP_NODELAY, true).
-                option(CONNECT_TIMEOUT_MILLIS, 300).
+                option(CONNECT_TIMEOUT_MILLIS, 5000).
                 handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
@@ -66,17 +69,17 @@ public class Client {
                     sendFuture.addListener(cf -> {
                         try {
                             if (!cf.isSuccess()) {
-//                    fatalError(channelFuture.cause());
+                                logger.error("", cf.cause());
                             }
                         } catch (Throwable t) {
-//                fatalError(t);
+                            logger.error("", t);
                         }
                     });
                 } else {
-//                        fatalError(new ConnectionFailedException(request.getAddress(), channelFuture.cause()));
+                    logger.error("", channelFuture.cause());
                 }
             } catch (Throwable t) {
-//                    fatalError(t);
+                logger.error("", t);
             }
         });
     }
@@ -116,6 +119,7 @@ public class Client {
         @Override
         public void channelReadComplete(ChannelHandlerContext ctx) {
             ctx.flush();
+            ctx.close();
         }
 
         @Override

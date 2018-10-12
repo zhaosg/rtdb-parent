@@ -24,13 +24,17 @@ public class Bootstrap {
             members.add(new Member("123", "127.0.0.1", Cfg.port()));
             server.start();
             Thread.sleep(2000);
-            AppendLogRequest request = new AppendLogRequest(1, 1, 1, 1, null, 1);
             RaftService service = RaftService.instance();
-            for (int i = 0; i < 100; i++) {
-                service.remoteAppendLog(members.get(0), request, (result) -> {
-                    System.out.println(JSON.toJSONString(result));
-                });
-            }
+//            System.out.println("压力测试开始");
+//            for (int i = 0; i <1000; i++) {
+//                AppendLogRequest request = new AppendLogRequest(i, 1, 1, 1, null, 1);
+//                final int ii=i;
+//                service.remoteAppendLog(members.get(0), request, (result) -> {
+//                    if(ii!=result.getTerm())
+//                        System.out.println(ii+","+result.getTerm());
+//                });
+//            }
+//            System.out.println("压力测试完成");
         } catch (Exception e) {
             logger.error("", e);
         }
