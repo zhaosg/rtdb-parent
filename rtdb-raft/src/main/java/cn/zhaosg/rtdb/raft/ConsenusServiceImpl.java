@@ -31,14 +31,14 @@ public class ConsenusServiceImpl implements ConsenusService {
         client.send(voteRequest, dataReady);
     }
 
-    public AppendLogResponse hanldeAppendLog(AppendLogRequest appendLogRequest) {
-        return new AppendLogResponse(appendLogRequest.getTerm(), 1);
+    public AppendEntriesResponse hanldeAppendLog(AppendEntriesRequest appendEntriesRequest) {
+        return new AppendEntriesResponse(appendEntriesRequest.getTerm(), 1);
     }
 
-    public void sendAppendLogRequest(Member member, AppendLogRequest appendLogRequest, Consumer<AppendLogResponse> dataReady) {
+    public void sendAppendEntriesRequest(Member member, AppendEntriesRequest appendEntriesRequest, Consumer<AppendEntriesResponse> dataReady) {
         NettyClient connection = new NettyClient(member.getHost(), member.getPort());
-        AppendLogRequest request = new AppendLogRequest(1, 1, 1, 1, null, 1);
-        connection.send(request, AppendLogResponse.class, dataReady);
+        AppendEntriesRequest request = new AppendEntriesRequest(1, 1, 1, 1, null, 1);
+        connection.send(request, AppendEntriesResponse.class, dataReady);
         connection.close();
     }
 }

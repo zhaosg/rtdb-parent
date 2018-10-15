@@ -1,7 +1,7 @@
 package cn.zhaosg.rtdb.serializers;
 
-import cn.zhaosg.rtdb.raft.AppendLogRequest;
-import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendEntriesRequest;
+import cn.zhaosg.rtdb.raft.AppendEntriesResponse;
 import cn.zhaosg.rtdb.raft.LogEntry;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.serializers.DefaultSerializers;
@@ -36,8 +36,8 @@ public abstract class KryoFactory {
       
         Kryo kryo = new Kryo();
         kryo.setRegistrationRequired(false);
-        kryo.register(AppendLogRequest.class);
-        kryo.register(AppendLogResponse.class);
+        kryo.register(AppendEntriesRequest.class);
+        kryo.register(AppendEntriesResponse.class);
         kryo.register(LogEntry.class);
         kryo.register(Arrays.asList("").getClass(), new ArraysAsListSerializer());
         kryo.register(GregorianCalendar.class, new GregorianCalendarSerializer());

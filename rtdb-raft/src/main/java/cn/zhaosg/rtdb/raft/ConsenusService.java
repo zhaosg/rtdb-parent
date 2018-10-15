@@ -13,8 +13,8 @@ public interface ConsenusService {
 
     void sendVoteRequest(VoteRequest voteRequest, Consumer<VoteResponse> dataReady);
 
-    AppendLogResponse hanldeAppendLog(AppendLogRequest appendLogRequest);
+    AppendEntriesResponse hanldeAppendLog(AppendEntriesRequest appendEntriesRequest);
 
-    void sendAppendLogRequest(Member member, AppendLogRequest appendLogRequest, Consumer<AppendLogResponse> dataReady);
+    void sendAppendEntriesRequest(Member member, AppendEntriesRequest appendEntriesRequest, Consumer<AppendEntriesResponse> dataReady);
 
 }

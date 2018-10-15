@@ -1,7 +1,7 @@
 package cn.zhaosg.rtdb.base;
 
-import cn.zhaosg.rtdb.raft.AppendLogRequest;
-import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendEntriesRequest;
+import cn.zhaosg.rtdb.raft.AppendEntriesResponse;
 import cn.zhaosg.rtdb.serializers.KryoSerializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -22,17 +22,17 @@ public class Coders {
         }
     }
 
-    public static class AppendLogRequestEncoder extends MessageToByteEncoder<AppendLogRequest> {
+    public static class AppendLogRequestEncoder extends MessageToByteEncoder<AppendEntriesRequest> {
         @Override
-        protected void encode(ChannelHandlerContext ctx, AppendLogRequest message, ByteBuf out) throws Exception {
+        protected void encode(ChannelHandlerContext ctx, AppendEntriesRequest message, ByteBuf out) throws Exception {
             KryoSerializer.serialize(message, out);
             ctx.flush();
         }
     }
 
-    public static class AppendLogResponseEncoder extends MessageToByteEncoder<AppendLogResponse> {
+    public static class AppendLogResponseEncoder extends MessageToByteEncoder<AppendEntriesResponse> {
         @Override
-        protected void encode(ChannelHandlerContext ctx, AppendLogResponse message, ByteBuf out) throws Exception {
+        protected void encode(ChannelHandlerContext ctx, AppendEntriesResponse message, ByteBuf out) throws Exception {
             KryoSerializer.serialize(message, out);
             ctx.flush();
         }

@@ -1,7 +1,7 @@
 package cn.zhaosg.rtdb.base;
 
-import cn.zhaosg.rtdb.raft.AppendLogRequest;
-import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendEntriesRequest;
+import cn.zhaosg.rtdb.raft.AppendEntriesResponse;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -228,9 +228,9 @@ public class NettyClient {
         Thread thread = new Thread(() -> {
             NettyClient connection = new NettyClient("127.0.0.1", 1987);
             for (int i = 0; i < 300000; i++) {
-                AppendLogRequest request = new AppendLogRequest(i, 1, 1, 1, null, 1);
+                AppendEntriesRequest request = new AppendEntriesRequest(i, 1, 1, 1, null, 1);
                 final int ii = i;
-                connection.send(request, AppendLogResponse.class, (result) -> {
+                connection.send(request, AppendEntriesResponse.class, (result) -> {
                     if (ii != result.getTerm())
                         System.out.println("" + result.getTerm() + " is bad");
                 });

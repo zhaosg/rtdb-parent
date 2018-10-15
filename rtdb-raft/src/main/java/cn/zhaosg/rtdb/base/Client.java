@@ -1,6 +1,6 @@
 package cn.zhaosg.rtdb.base;
 
-import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendEntriesResponse;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -42,7 +42,7 @@ public class Client {
     public <T> void send(Object request, Consumer<T> dataReady) {
         Bootstrap b = new Bootstrap();
         final RaftClientHandler hander = new RaftClientHandler((object) -> {
-            if (object instanceof AppendLogResponse) {
+            if (object instanceof AppendEntriesResponse) {
                 dataReady.accept((T) object);
             }
         });

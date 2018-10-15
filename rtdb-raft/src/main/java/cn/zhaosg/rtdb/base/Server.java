@@ -1,8 +1,8 @@
 package cn.zhaosg.rtdb.base;
 
 import cn.zhaosg.rtdb.Cfg;
-import cn.zhaosg.rtdb.raft.AppendLogRequest;
-import cn.zhaosg.rtdb.raft.AppendLogResponse;
+import cn.zhaosg.rtdb.raft.AppendEntriesRequest;
+import cn.zhaosg.rtdb.raft.AppendEntriesResponse;
 import cn.zhaosg.rtdb.raft.ConsenusService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -60,9 +60,9 @@ public class Server implements Runnable {
 
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) {
-            if (msg instanceof AppendLogRequest) {
-                AppendLogRequest request = (AppendLogRequest) msg;
-                AppendLogResponse response = ConsenusService.instance().hanldeAppendLog(request);
+            if (msg instanceof AppendEntriesRequest) {
+                AppendEntriesRequest request = (AppendEntriesRequest) msg;
+                AppendEntriesResponse response = ConsenusService.instance().hanldeAppendLog(request);
                 ctx.writeAndFlush(response);
                 Server.statInfo.increment();
             }
