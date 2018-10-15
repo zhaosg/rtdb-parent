@@ -11,7 +11,7 @@ import java.util.List;
 public class Bootstrap {
     private static Logger logger = LoggerFactory.getLogger(Bootstrap.class);
 
-    public static List<Member> members = new ArrayList<>();
+    public static List<Member> members = null;
     private Server server;
 
     public void start() {
@@ -19,7 +19,7 @@ public class Bootstrap {
             loadConfig();
             server = new Server();
             logger.info(String.format("the server start at port %d", Cfg.port()));
-            members.add(new Member("123", "127.0.0.1", Cfg.port()));
+            members = Cfg.members();
             server.start();
             Thread.sleep(2000);
             ConsenusService service = ConsenusService.instance();

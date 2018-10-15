@@ -1,25 +1,15 @@
 package cn.zhaosg.rtdb.raft;
 
 public class Member {
-    private String id;
     private String host;
     private int port;
 
     public Member() {
     }
 
-    public Member(String id, String host, int port) {
-        this.id = id;
+    public Member(String host, int port) {
         this.host = host;
         this.port = port;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getHost() {
