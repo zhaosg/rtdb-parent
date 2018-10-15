@@ -1,32 +1,9 @@
 package cn.zhaosg.rtdb.raft;
 
 public class LogEntry {
-    private  String category;
-    private  String message;
+    private long term;//服务器最后一次知道的任期号（初始化为 0，持续递增）
+    private  String command;
 
     public LogEntry() {
-    }
-
-    public LogEntry(String category, String message) {
-        this.category = category;
-        this.message = message;
-    }
-
-    public String getCategory()
-    {
-        return category;
-    }
-
-    public String getMessage()
-    {
-        return message;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
