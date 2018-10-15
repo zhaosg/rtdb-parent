@@ -1,7 +1,6 @@
 import cn.zhaosg.rtdb.Cfg;
 import cn.zhaosg.rtdb.base.Server;
 import cn.zhaosg.rtdb.raft.Member;
-import cn.zhaosg.rtdb.raft.LogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
