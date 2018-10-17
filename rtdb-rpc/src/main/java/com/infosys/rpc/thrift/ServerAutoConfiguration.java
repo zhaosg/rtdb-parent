@@ -16,6 +16,7 @@ import com.infosys.rpc.thrift.remote.KryoSerializer;
 import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
 import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
 import com.infosys.rpc.thrift.server.ThriftHsHaServer;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 @ConditionalOnClass(ThriftServicePublisher.class)
@@ -23,6 +24,7 @@ import com.infosys.rpc.thrift.server.ThriftHsHaServer;
 public class ServerAutoConfiguration {
 
     @Autowired
+    @Lazy
     private ServerProperties serverProperties;
 
     @Bean

@@ -1,8 +1,11 @@
 package com.infosys.rpc.thrift;
 
+import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
 import org.apache.thrift.protocol.TTupleProtocol.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,7 +20,8 @@ import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
 import com.infosys.rpc.thrift.remote.base.ThriftRemoteProxyFactory;
 
 @Configuration
-@ConditionalOnProperty(name = "thrift.client.address")
+//@ConditionalOnClass(ThriftClientFactoryProvider.class)
+@EnableConfigurationProperties(ClientProperties.class)
 public class ClientAutoConfiguration {
 
     @Autowired
@@ -30,7 +34,6 @@ public class ClientAutoConfiguration {
 //    }
 
     @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
     ThriftClientFactoryProvider createThriftClientFactoryProvider() {
         ThriftClientFactoryProvider thriftClientFactoryProvider = new ThriftClientFactoryProvider();
         thriftClientFactoryProvider.setConnectionTimeout(clientProperties.getTimeout());
@@ -44,19 +47,16 @@ public class ClientAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
     Serializer createSerializer() {
         return new KryoSerializer();
     }
 
     @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
     LoadBalance createLoadBalance() {
         return new RoundrobinLoadBalance();
     }
 
     @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
     ThriftMessageConvert createThriftMessageConvert(Serializer serializer) {
         ThriftMessageConvert thriftMessageConvert = new ThriftMessageConvert();
         thriftMessageConvert.setSerializer(serializer);
@@ -64,7 +64,6 @@ public class ClientAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
     DistributeClient createDistributeClient(ThriftClientFactoryProvider thriftClientFactoryProvider,LoadBalance loadBalance) {
         DistributeClient client = new DistributeClient();
         client.setFactoryProvider(thriftClientFactoryProvider);
@@ -82,7 +81,6 @@ public class ClientAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
     ThriftRemoteProxyFactory createThriftRemoteProxyFactory(DistributeClient distributeClient, ThriftMessageConvert thriftMessageConvert) {
         ThriftRemoteProxyFactory proxyFactory = new ThriftRemoteProxyFactory();
         proxyFactory.setServiceName("RtdbService");
