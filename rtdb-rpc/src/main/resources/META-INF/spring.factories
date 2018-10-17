@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.infosys.rpc.thrift.ServerAutoConfiguration,\
+com.infosys.rpc.thrift.ClientAutoConfiguration

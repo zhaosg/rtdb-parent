@@ -2,7 +2,6 @@ package com.infosys.rpc.thrift;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.thrift.protocol.TTupleProtocol;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +10,20 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import com.infosys.rpc.api.RtdbService;
 import com.infosys.rpc.remote.ServiceDefinition;
-import com.infosys.rpc.thrift.cluster.ThriftClientFactoryProvider;
 import com.infosys.rpc.thrift.remote.KryoSerializer;
 import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
 import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
 import com.infosys.rpc.thrift.server.ThriftHsHaServer;
 
 @Configuration
-@ConditionalOnClass(ThriftClientFactoryProvider.class)
+@ConditionalOnClass(ThriftServicePublisher.class)
 @EnableConfigurationProperties(ServerProperties.class)
 public class ServerAutoConfiguration {
 
     @Autowired
-    private ServerProperties rpcServerProperties;
+    private ServerProperties serverProperties;
 
     @Bean
     @ConditionalOnProperty(name = "thrift.server.port")
@@ -50,15 +47,15 @@ public class ServerAutoConfiguration {
     ThriftHsHaServer createThriftHsHaServer(ThriftServicePublisher publisher) {
         ThriftHsHaServer thriftHsHaServer = new ThriftHsHaServer();
         thriftHsHaServer.setProcessor(publisher);
-        thriftHsHaServer.setMinWorkerThreads(rpcServerProperties.getMinWorkerThreads());
-        thriftHsHaServer.setWorkerThreads(rpcServerProperties.getWorkerThreads());
-        thriftHsHaServer.setPort(rpcServerProperties.getPort());
-        thriftHsHaServer.setSecurity(rpcServerProperties.getSecurity());
-        thriftHsHaServer.setStopTimeoutVal(rpcServerProperties.getStopTimeoutVal());
-        thriftHsHaServer.setClientTimeout(rpcServerProperties.getClientTimeout());
+        thriftHsHaServer.setMinWorkerThreads(serverProperties.getMinWorkerThreads());
+        thriftHsHaServer.setWorkerThreads(serverProperties.getWorkerThreads());
+        thriftHsHaServer.setPort(serverProperties.getPort());
+        thriftHsHaServer.setSecurity(serverProperties.getSecurity());
+        thriftHsHaServer.setStopTimeoutVal(serverProperties.getStopTimeoutVal());
+        thriftHsHaServer.setClientTimeout(serverProperties.getClientTimeout());
         thriftHsHaServer.setProtocolFactory(new TTupleProtocol.Factory());
         Map<String, String> allowedFromTokens = new HashMap<>();
-        String whitelist = rpcServerProperties.getWhitelist();
+        String whitelist = serverProperties.getWhitelist();
         if (StringUtils.isNotBlank(whitelist)) {
             String[] ss = whitelist.split(",");
             for (int i = 0; i < ss.length; i++) {

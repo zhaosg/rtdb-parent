@@ -1,5 +1,11 @@
 package com.infosys.rpc.thrift;
 
+import org.apache.thrift.protocol.TTupleProtocol.Factory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import com.infosys.rpc.api.RtdbService;
 import com.infosys.rpc.base.cluster.LoadBalance;
 import com.infosys.rpc.base.cluster.RoundrobinLoadBalance;
@@ -9,39 +15,31 @@ import com.infosys.rpc.thrift.remote.KryoSerializer;
 import com.infosys.rpc.thrift.remote.Serializer;
 import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
 import com.infosys.rpc.thrift.remote.base.ThriftRemoteProxyFactory;
-import org.apache.thrift.protocol.TTupleProtocol.Factory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnClass(ThriftClientFactoryProvider.class)
-@EnableConfigurationProperties(ClientProperties.class)
+@ConditionalOnProperty(name = "thrift.client.address")
 public class ClientAutoConfiguration {
 
     @Autowired
-    private ClientProperties rdbProperties;
+    private ClientProperties clientProperties;
+
+//    @Bean
+//    @ConditionalOnProperty(name = "thrift.client.address")
+//    Factory Factory() {
+//        return new Factory();
+//    }
 
     @Bean
     @ConditionalOnProperty(name = "thrift.client.address")
-    Factory Factory() {
-        return new Factory();
-    }
-
-    @Bean
-    @ConditionalOnProperty(name = "thrift.client.address")
-    ThriftClientFactoryProvider createThriftClientFactoryProvider(Factory factory) {
+    ThriftClientFactoryProvider createThriftClientFactoryProvider() {
         ThriftClientFactoryProvider thriftClientFactoryProvider = new ThriftClientFactoryProvider();
-        thriftClientFactoryProvider.setConnectionTimeout(rdbProperties.getTimeout());
-        thriftClientFactoryProvider.setHosts(rdbProperties.getAddress());
+        thriftClientFactoryProvider.setConnectionTimeout(clientProperties.getTimeout());
+        thriftClientFactoryProvider.setHosts(clientProperties.getAddress());
         thriftClientFactoryProvider.setConnectionTimeout(10000);
         thriftClientFactoryProvider.setFramed(true);
-        thriftClientFactoryProvider.setProtocolFactory(factory);
-        thriftClientFactoryProvider.setFrom(rdbProperties.getFrom());
-        thriftClientFactoryProvider.setToken(rdbProperties.getToken());
+        thriftClientFactoryProvider.setProtocolFactory(new Factory());
+        thriftClientFactoryProvider.setFrom(clientProperties.getFrom());
+        thriftClientFactoryProvider.setToken(clientProperties.getToken());
         return thriftClientFactoryProvider;
     }
 

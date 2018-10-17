@@ -5,10 +5,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "thrift.client")
 public class ClientProperties {
 
-    private Integer timeout;
+    private Integer timeout=1000;
     private String address;
-    private String from;
-    private String token;
+    private String from="";
+    private String token="";
 
     public Integer getTimeout() {
         return timeout;
