@@ -12,7 +12,6 @@ import com.infosys.rpc.base.cluster.pool.ClientFactoryProvider;
 import com.infosys.rpc.thrift.client.ThriftClientConfig;
 import com.infosys.rpc.thrift.support.Request;
 import com.infosys.rpc.thrift.support.Response;
-import org.springframework.util.StringUtils;
 
 /**
  * 为了方便配置，提供此类

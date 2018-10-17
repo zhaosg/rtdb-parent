@@ -1,16 +1,10 @@
 package com.infosys.rpc;
 
-import com.infosys.rpc.api.RtdbService;
-import com.infosys.rpc.api.RtdbServiceImpl;
-import com.infosys.rpc.remote.ServiceDefinition;
-import com.infosys.rpc.thrift.cluster.ThriftClientFactoryProvider;
-import com.infosys.rpc.thrift.remote.KryoSerializer;
-import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
-import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
-import com.infosys.rpc.thrift.server.ThriftHsHaServer;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.thrift.protocol.TTupleProtocol;
-import org.apache.thrift.protocol.TTupleProtocol.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -18,8 +12,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.infosys.rpc.api.RtdbService;
+import com.infosys.rpc.remote.ServiceDefinition;
+import com.infosys.rpc.thrift.cluster.ThriftClientFactoryProvider;
+import com.infosys.rpc.thrift.remote.KryoSerializer;
+import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
+import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
+import com.infosys.rpc.thrift.server.ThriftHsHaServer;
 
 @Configuration
 @ConditionalOnClass(ThriftClientFactoryProvider.class)

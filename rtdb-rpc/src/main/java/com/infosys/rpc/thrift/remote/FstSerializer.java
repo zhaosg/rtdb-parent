@@ -1,14 +1,6 @@
 package com.infosys.rpc.thrift.remote;
 
-import com.infosys.rpc.base.utils.CloseUtils;
 import org.nustaq.serialization.FSTConfiguration;
-import org.nustaq.serialization.FSTObjectInput;
-import org.nustaq.serialization.FSTObjectOutput;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 /**
  * @author dongjian_9@163.com
