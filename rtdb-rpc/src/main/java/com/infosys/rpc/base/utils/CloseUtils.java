@@ -7,7 +7,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * @author dongjian_9@163.com
  * */
 public class CloseUtils {
 

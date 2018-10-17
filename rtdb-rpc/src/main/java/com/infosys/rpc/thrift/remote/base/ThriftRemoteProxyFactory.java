@@ -9,7 +9,6 @@ import com.infosys.rpc.thrift.support.Response;
 /**
  * Thrift实现的远程代理工厂
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftRemoteProxyFactory<T> extends RemoteProxyFactory<T, Request, Response> {
 	

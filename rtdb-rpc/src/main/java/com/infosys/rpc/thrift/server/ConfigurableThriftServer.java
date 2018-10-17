@@ -14,7 +14,6 @@ import com.infosys.rpc.thrift.support.Response;
 /**
  * 封装server通用配置
  * 
- * @author dongjian_9@163.com
  * */
 public abstract class ConfigurableThriftServer extends GenericServer<Request, Response> {
 	

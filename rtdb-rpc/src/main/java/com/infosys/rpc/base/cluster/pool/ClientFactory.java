@@ -12,7 +12,6 @@ import com.infosys.rpc.base.utils.CloseUtils;
  * 
  * @see PoolableObjectFactory
  * 
- * @author dongjian_9@163.com
  * */
 public abstract class ClientFactory<P, R> extends BasePoolableObjectFactory<Client<P, R>> {
 	public ClientFactory() { }

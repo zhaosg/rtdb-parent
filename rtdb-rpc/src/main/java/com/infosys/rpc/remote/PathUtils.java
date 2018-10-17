@@ -9,7 +9,6 @@ import java.lang.reflect.Method;
  * 
  * 可以通过{@link AService}类设置服务地址，避免重复
  * 
- * @author dongjian_9@163.com
  */
 public final class PathUtils {
 

@@ -3,7 +3,6 @@ package com.infosys.rpc.remote;
 /**
  * 定义了一个服务的接口和实现类
  * 
- * @author dongjian_9@163.com
  * */
 public class ServiceDefinition {
 	

@@ -5,7 +5,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.commons.pool.ObjectPool;
 
 /**
- * @author dongjian_9@163.com
  * */
 public class PoolUtils {
 

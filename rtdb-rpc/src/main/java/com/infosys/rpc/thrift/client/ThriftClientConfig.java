@@ -8,7 +8,6 @@ import org.apache.thrift.protocol.TTupleProtocol;
 /**
  * 封装配置
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftClientConfig {
 	

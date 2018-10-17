@@ -3,8 +3,7 @@ package com.infosys.rpc.base.cluster;
 /**
  * 负载均衡接口，提供负载均衡的方式
  * 
- * @author dongjian_9@163.com
- * 
+ *
  * */
 public interface LoadBalance {
 	

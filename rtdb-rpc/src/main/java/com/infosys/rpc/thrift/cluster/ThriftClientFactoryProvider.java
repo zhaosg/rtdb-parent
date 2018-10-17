@@ -18,7 +18,6 @@ import com.infosys.rpc.thrift.support.Response;
  * 
  * @see DistributeClient
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftClientFactoryProvider implements ClientFactoryProvider<Request, Response> {
 	

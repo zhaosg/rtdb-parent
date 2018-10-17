@@ -3,7 +3,6 @@ package com.infosys.rpc.thrift.remote;
 import org.nustaq.serialization.FSTConfiguration;
 
 /**
- * @author dongjian_9@163.com
  */
 public class FstSerializer implements Serializer {
     static FSTConfiguration conf = FSTConfiguration.createDefaultConfiguration();

@@ -15,7 +15,6 @@ import com.infosys.rpc.base.cluster.pool.Pool;
  * 
  * @see Pool
  * 
- * @author dongjian_9@163.com
  */
 public class RandomLoadBalance implements LoadBalance {
 	protected Log log = LogFactory.getLog(RandomLoadBalance.class);

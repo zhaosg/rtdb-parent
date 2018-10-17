@@ -12,7 +12,6 @@ import com.infosys.rpc.thrift.support.Response;
 /**
  * Client端工具类
  * 
- * @author dongjian_9@163.com
  */
 public final class ClientHelper {
 

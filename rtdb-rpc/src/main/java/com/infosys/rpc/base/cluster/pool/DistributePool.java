@@ -32,7 +32,6 @@ import com.infosys.rpc.base.utils.PoolUtils;
  * <br>
  * 7、适用场景：集群数量小于 0.1 * maxIdle<br>
  * <br>
- * @author dongjian_9@163.com
  */
 public class DistributePool<P, R> extends ConfigurableDistributePool<P, R> implements Pool<P, R>, InitializingBean, DisposableBean {
 	protected static Log log = LogFactory.getLog(DistributePool.class);

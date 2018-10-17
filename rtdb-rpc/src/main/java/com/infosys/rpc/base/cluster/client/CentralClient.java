@@ -10,7 +10,6 @@ import com.infosys.rpc.base.cluster.pool.CentralPool;
  * 
  * @see CentralPool
  * 
- * @author dongjian_9@163.com
  */
 public class CentralClient<P, R> extends CentralPool<P, R> implements ThreadSafetyClient<P, R> {
 	

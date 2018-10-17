@@ -12,7 +12,6 @@ import com.infosys.rpc.thrift.support.Response;
 /**
  * 用于提供 ThriftClient
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftClientFactory extends ClientFactory<Request, Response> {
 	

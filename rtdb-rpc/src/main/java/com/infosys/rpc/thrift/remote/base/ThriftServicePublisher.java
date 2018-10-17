@@ -9,7 +9,6 @@ import com.infosys.rpc.thrift.support.Response;
 /**
  * Thrift实现的服务发布处理器
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftServicePublisher extends ServicePublisher<Request, Response> {
 	

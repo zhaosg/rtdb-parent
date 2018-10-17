@@ -3,7 +3,6 @@ package com.infosys.rpc.base.client;
 /**
  * 线程安全的客户端接口
  * 
- * @author dongjian_9@163.com
  */
 public interface ThreadSafetyClient<P, R> {
 

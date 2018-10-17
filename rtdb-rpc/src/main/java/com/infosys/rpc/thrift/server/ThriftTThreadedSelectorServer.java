@@ -19,7 +19,6 @@ import com.infosys.rpc.thrift.support.Response;
  * 
  * 当网络I/O是瓶颈的时候，TThreadedSelectorServer比THsHaServer的表现要好。
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftTThreadedSelectorServer extends AbstractThriftServer {
 	

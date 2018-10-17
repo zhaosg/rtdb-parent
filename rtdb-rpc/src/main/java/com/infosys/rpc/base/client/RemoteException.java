@@ -5,7 +5,6 @@ package com.infosys.rpc.base.client;
  * 
  * 推荐server端不抛出异常，而将异常包装为返回结果。<br>
  * 
- * @author dongjian_9@163.com
  * */
 public class RemoteException extends Exception {
 

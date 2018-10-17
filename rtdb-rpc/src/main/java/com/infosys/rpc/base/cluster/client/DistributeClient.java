@@ -10,7 +10,6 @@ import com.infosys.rpc.base.cluster.pool.DistributePool;
  * 
  * @see DistributePool
  * 
- * @author dongjian_9@163.com
  */
 public class DistributeClient<P, R> extends DistributePool<P, R> implements ThreadSafetyClient<P, R> {
 	

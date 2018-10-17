@@ -17,7 +17,6 @@ import com.infosys.rpc.thrift.support.Response;
 /**
  * 使用一个单独的线程来处理网络I/O，一个独立的worker线程池来处理消息
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftHsHaServer extends AbstractThriftServer {
 	

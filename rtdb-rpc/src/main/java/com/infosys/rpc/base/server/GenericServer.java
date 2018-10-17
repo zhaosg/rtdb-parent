@@ -11,7 +11,6 @@ import org.springframework.core.Ordered;
  * <br>
  * 任何子类，都需要将请求转交给{@link #doServerProcess(Object)} 进行处理。
  * <br>
- * @author dongjian_9@163.com
  * */
 public abstract class GenericServer<P, R> implements Server, InitializingBean, DisposableBean, Ordered {
 	protected static Log log = LogFactory.getLog(GenericServer.class);

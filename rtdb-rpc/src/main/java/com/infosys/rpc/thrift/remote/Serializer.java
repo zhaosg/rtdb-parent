@@ -3,7 +3,6 @@ package com.infosys.rpc.thrift.remote;
 /**
  * 序列化接口
  * 
- * @author dongjian_9@163.com
  */
 public interface Serializer {
 	

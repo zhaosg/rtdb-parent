@@ -9,7 +9,6 @@ import com.infosys.rpc.base.client.ClientIOException;
 /**
  * 提供获取连接的方式<br>
  * 
- * @author dongjian_9@163.com
  */
 public interface Pool<P, R> extends Closeable {
 	

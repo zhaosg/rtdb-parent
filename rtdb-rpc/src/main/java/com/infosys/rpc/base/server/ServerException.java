@@ -3,7 +3,6 @@ package com.infosys.rpc.base.server;
 /**
  * 调用{@link Server#start()}可能抛出，无法启动server时抛出的异常
  * 
- * @author dongjian_9@163.com
  * */
 public class ServerException extends Exception {
 

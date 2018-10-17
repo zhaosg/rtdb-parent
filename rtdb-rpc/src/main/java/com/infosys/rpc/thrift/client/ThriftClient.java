@@ -25,7 +25,6 @@ import com.infosys.rpc.thrift.support.ThriftServce;
 /**
  * thrift实现的Client
  * 
- * @author dongjian_9@163.com
  */
 public class ThriftClient implements Client<Request, Response> {
 	private static Log log = LogFactory.getLog(ThriftClient.class);

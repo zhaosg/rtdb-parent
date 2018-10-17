@@ -14,7 +14,6 @@ import com.infosys.rpc.thrift.support.ThriftServce;
 /**
  * Thrift实现，用来继承，子类提供{@link TServer}创建方式<br>
  * 
- * @author dongjian_9@163.com
  */
 public abstract class AbstractThriftServer extends ConfigurableThriftServer {
 

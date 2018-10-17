@@ -40,7 +40,6 @@ import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.serializers.JavaSerializer;
 
 /**
- * @author dongjian_9@163.com
  */
 public class KryoSerializer implements Serializer {
 	private static final ObjectPool<Kryo> pool = new KryoGenericObjectPool();

@@ -25,7 +25,6 @@ import com.infosys.rpc.remote.ServiceDefinition;
 /**
  * 用于继承，用来发布服务，实现了{@link ServerProcessor}
  * 
- * @author dongjian_9@163.com
  * */
 public class ServicePublisher<P, R> implements ServerProcessor<P, R>, InitializingBean {
 	private static Log log = LogFactory.getLog(ServicePublisher.class);

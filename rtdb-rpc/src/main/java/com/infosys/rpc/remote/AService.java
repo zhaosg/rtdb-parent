@@ -14,7 +14,6 @@ import java.lang.annotation.Target;
  * <br>
  * 方法上标明此类，表示该方法可提供服务
  * 
- * @author dongjian_9@163.com
  * */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -17,7 +17,6 @@ import com.infosys.rpc.thrift.support.Response;
  * 
  * 延迟低，短连接时可以优先考虑
  * 
- * @author dongjian_9@163.com
  * */
 public class ThriftThreadPoolServer extends AbstractThriftServer {
 	

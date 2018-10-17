@@ -11,7 +11,6 @@ import com.infosys.rpc.base.cluster.RoundrobinLoadBalance;
 /**
  * {@link CentralPool}的配置
  * 
- * @author dongjian_9@163.com
  * */
 public abstract class ConfigurableCentralPool<P, R> {
 	/**

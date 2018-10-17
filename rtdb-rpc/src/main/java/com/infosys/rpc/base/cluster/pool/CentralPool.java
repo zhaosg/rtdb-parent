@@ -34,7 +34,6 @@ import com.infosys.rpc.base.utils.PoolUtils;
  * <br>
  * 7、适用场景：集群数量处于0.3*maxIdle ~ 3*maxIdle之间此类最为合适<br>
  * <br>
- * @author dongjian_9@163.com
  */
 public class CentralPool<P, R> extends ConfigurableCentralPool<P, R> implements Pool<P, R>, InitializingBean, DisposableBean  {
 	

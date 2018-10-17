@@ -14,7 +14,6 @@ import com.infosys.rpc.thrift.support.Response;
  * 实现{@link Request}与{@link Param}转换<br>
  * 实现{@link Response}与{@link Object}转换<br>
  * 
- * @author dongjian_9@163.com
  *
  */
 public class ThriftMessageConvert implements MessageConvert<Request, Response> {

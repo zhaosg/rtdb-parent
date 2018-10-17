@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import com.infosys.rpc.base.utils.CloseUtils;
 
 /**
- * @author dongjian_9@163.com
  */
 public class JavaSerializer implements Serializer {
 

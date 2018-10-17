@@ -3,7 +3,6 @@ package com.infosys.rpc.base.server;
 /**
  * 服务端处理器的标准接口，{@link GenericServer} 接到的任何请求都由此类处理，处理具体的业务逻辑。
  * 
- * @author dongjian_9@163.com
  */
 public interface ServerProcessor<P, R> {
 

@@ -20,7 +20,6 @@ import com.infosys.rpc.remote.PathUtils;
  * 
  * 每个接口只被创建一个实例
  * 
- * @author dongjian_9@163.com
  * */
 public class RemoteProxyFactory<T, P, R> implements FactoryBean<T> {
 	private static Log log = LogFactory.getLog(RemoteProxyFactory.class);
@@ -130,8 +129,7 @@ public class RemoteProxyFactory<T, P, R> implements FactoryBean<T> {
 	}
 	
 	/**
-	 * @author dongjian_9@163.com
-	 */
+		 */
 	public static class RemoteInvocationException extends InvocationTargetException {
 
 		private static final long serialVersionUID = 1L;

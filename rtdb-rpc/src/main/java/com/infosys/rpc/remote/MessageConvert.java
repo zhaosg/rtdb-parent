@@ -5,7 +5,6 @@ import java.util.Arrays;
 /**
  * 消息转换，封装客户端与服务端消息转换细节
  * 
- * @author dongjian_9@163.com
  * */
 public interface MessageConvert<P, R> {
 	
@@ -40,8 +39,7 @@ public interface MessageConvert<P, R> {
 	public Throwable readException(R result) throws MessageConvertException;
 	
 	/**
-	 * @author dongjian_9@163.com
-	 */
+		 */
 	public class MessageConvertException extends Exception {
 		
 		private static final long serialVersionUID = 1L;
@@ -64,8 +62,7 @@ public interface MessageConvert<P, R> {
 	/**
 	 * 参数封装
 	 * 
-	 * @author dongjian_9@163.com
-	 */
+		 */
 	public static class Param {
 
 		public Object[] parameters;

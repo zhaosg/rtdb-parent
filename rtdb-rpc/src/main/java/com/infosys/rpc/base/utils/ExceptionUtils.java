@@ -1,7 +1,6 @@
 package com.infosys.rpc.base.utils;
 
 /**
- * @author dongjian_9@163.com
  */
 public class ExceptionUtils {
 	

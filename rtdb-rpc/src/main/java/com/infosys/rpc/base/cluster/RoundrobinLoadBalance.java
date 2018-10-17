@@ -11,7 +11,6 @@ import org.apache.commons.logging.LogFactory;
 /**
  * 轮询方式均衡。
  * 
- * @author dongjian_9@163.com
  */
 public class RoundrobinLoadBalance implements LoadBalance {
 	protected Log log = LogFactory.getLog(RoundrobinLoadBalance.class);

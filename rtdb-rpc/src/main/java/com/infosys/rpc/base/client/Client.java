@@ -5,7 +5,6 @@ import java.io.Closeable;
 /**
  * 客户端标准接口
  * 
- * @author dongjian_9@163.com
  */
 public interface Client<P, R> extends Closeable {
 	
