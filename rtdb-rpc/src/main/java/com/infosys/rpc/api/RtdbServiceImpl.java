@@ -1,8 +1,9 @@
 package com.infosys.rpc.api;
 
-import com.infosys.rpc.ThriftService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.infosys.rpc.thrift.ThriftService;
 
 import java.util.HashMap;
 import java.util.Map;
