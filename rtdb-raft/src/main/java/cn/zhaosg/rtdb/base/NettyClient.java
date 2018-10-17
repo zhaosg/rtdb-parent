@@ -38,7 +38,8 @@ public class NettyClient {
 
     final Map<Channel, Consumer<Object>> map = new ConcurrentHashMap<>();
 
-    public <T> void send(Object request, Class<T> cls, Consumer<T> dataReady) {
+    @SuppressWarnings("unchecked")
+	public <T> void send(Object request, Class<T> cls, Consumer<T> dataReady) {
         final ChannelHolder channelHolder = new ChannelHolder();
         try {
             channelHolder.channel = objectPool.borrowObject(200);
@@ -77,14 +78,9 @@ public class NettyClient {
     }
 
     public class ResponseHandler extends ChannelInboundHandlerAdapter {
-        private Consumer<Object> dataReady;
 
         public ResponseHandler() {
 
-        }
-
-        public ResponseHandler(Consumer<Object> dataReady) {
-            this.dataReady = dataReady;
         }
 
         @Override

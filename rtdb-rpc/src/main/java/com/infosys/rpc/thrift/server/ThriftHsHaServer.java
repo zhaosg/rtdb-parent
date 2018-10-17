@@ -40,6 +40,7 @@ public class ThriftHsHaServer extends AbstractThriftServer {
 		args.maxWorkerThreads(workerThreads);
 		args.stopTimeoutVal(stopTimeoutVal);
 		args.stopTimeoutUnit(TimeUnit.MILLISECONDS);
+		args.maxReadBufferBytes=5*1024*1024;
 		return new THsHaServer(args);
 	}
 	

@@ -1,12 +1,12 @@
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cn.zhaosg.rtdb.Cfg;
 import cn.zhaosg.rtdb.base.Server;
 import cn.zhaosg.rtdb.raft.ConsenusService;
 import cn.zhaosg.rtdb.raft.Member;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Bootstrap {
     private static Logger logger = LoggerFactory.getLogger(Bootstrap.class);
@@ -22,7 +22,7 @@ public class Bootstrap {
             members = Cfg.members();
             server.start();
             Thread.sleep(2000);
-            ConsenusService service = ConsenusService.instance();
+//            ConsenusService service = ConsenusService.instance();
 //            System.out.println("压力测试开始");
 //            for (int i = 0; i <1000; i++) {
 //                AppendLogRequest request = new AppendLogRequest(i, 1, 1, 1, null, 1);

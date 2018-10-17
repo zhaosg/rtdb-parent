@@ -41,7 +41,8 @@ public class Client {
 
     public <T> void send(Object request, Consumer<T> dataReady) {
         Bootstrap b = new Bootstrap();
-        final RaftClientHandler hander = new RaftClientHandler((object) -> {
+        @SuppressWarnings("unchecked")
+		final RaftClientHandler hander = new RaftClientHandler((object) -> {
             if (object instanceof AppendEntriesResponse) {
                 dataReady.accept((T) object);
             }

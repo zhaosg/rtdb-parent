@@ -6,4 +6,22 @@ public class LogEntry {
 
     public LogEntry() {
     }
+
+	public long getTerm() {
+		return term;
+	}
+
+	public void setTerm(long term) {
+		this.term = term;
+	}
+
+	public String getCommand() {
+		return command;
+	}
+
+	public void setCommand(String command) {
+		this.command = command;
+	}
+    
+    
 }
