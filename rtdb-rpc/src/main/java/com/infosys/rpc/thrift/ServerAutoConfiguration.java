@@ -2,24 +2,25 @@ package com.infosys.rpc.thrift;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.thrift.protocol.TTupleProtocol;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+
 import com.infosys.rpc.api.RtdbService;
 import com.infosys.rpc.remote.ServiceDefinition;
 import com.infosys.rpc.thrift.remote.KryoSerializer;
 import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
 import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
 import com.infosys.rpc.thrift.server.ThriftHsHaServer;
-import org.springframework.context.annotation.Lazy;
 
 @Configuration
-@ConditionalOnClass(ThriftServicePublisher.class)
+@ConditionalOnProperty(name = "thrift.server.port")
 @EnableConfigurationProperties(ServerProperties.class)
 public class ServerAutoConfiguration {
 

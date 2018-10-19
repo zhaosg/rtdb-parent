@@ -1,26 +1,22 @@
 package com.infosys.rpc.thrift;
 
-import com.infosys.rpc.thrift.remote.base.ThriftServicePublisher;
 import org.apache.thrift.protocol.TTupleProtocol.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.infosys.rpc.api.RtdbService;
-import com.infosys.rpc.base.cluster.LoadBalance;
 import com.infosys.rpc.base.cluster.RoundrobinLoadBalance;
 import com.infosys.rpc.base.cluster.client.DistributeClient;
 import com.infosys.rpc.thrift.cluster.ThriftClientFactoryProvider;
 import com.infosys.rpc.thrift.remote.KryoSerializer;
-import com.infosys.rpc.thrift.remote.Serializer;
 import com.infosys.rpc.thrift.remote.ThriftMessageConvert;
 import com.infosys.rpc.thrift.remote.base.ThriftRemoteProxyFactory;
 
 @Configuration
-//@ConditionalOnClass(ThriftClientFactoryProvider.class)
+@ConditionalOnProperty(name = "thrift.client.address")
 @EnableConfigurationProperties(ClientProperties.class)
 public class ClientAutoConfiguration {
 
@@ -47,25 +43,8 @@ public class ClientAutoConfiguration {
     }
 
     @Bean
-    Serializer createSerializer() {
-        return new KryoSerializer();
-    }
-
-    @Bean
-    LoadBalance createLoadBalance() {
-        return new RoundrobinLoadBalance();
-    }
-
-    @Bean
-    ThriftMessageConvert createThriftMessageConvert(Serializer serializer) {
-        ThriftMessageConvert thriftMessageConvert = new ThriftMessageConvert();
-        thriftMessageConvert.setSerializer(serializer);
-        return thriftMessageConvert;
-    }
-
-    @Bean
-    DistributeClient createDistributeClient(ThriftClientFactoryProvider thriftClientFactoryProvider,LoadBalance loadBalance) {
-        DistributeClient client = new DistributeClient();
+    ThriftRemoteProxyFactory createThriftRemoteProxyFactory(ThriftClientFactoryProvider thriftClientFactoryProvider) {
+    	DistributeClient client = new DistributeClient();
         client.setFactoryProvider(thriftClientFactoryProvider);
         client.setHeartbeat(1000);///心跳频率
         client.setMaxHeartbeatThread(1);///处理心跳的最大线程数
@@ -76,16 +55,13 @@ public class ClientAutoConfiguration {
         client.setMaxWait(1000);///等待连接池的时间
         client.setMaxKeepMillis(-1);///连接使用多久之后被销毁
         client.setMaxSendCount(-1);///连接使用多少次之后被销毁
-        client.setLoadBalance(loadBalance);
-        return client;
-    }
-
-    @Bean
-    ThriftRemoteProxyFactory createThriftRemoteProxyFactory(DistributeClient distributeClient, ThriftMessageConvert thriftMessageConvert) {
+        client.setLoadBalance(new RoundrobinLoadBalance());
+    	ThriftMessageConvert thriftMessageConvert = new ThriftMessageConvert();
+        thriftMessageConvert.setSerializer(new KryoSerializer());
         ThriftRemoteProxyFactory proxyFactory = new ThriftRemoteProxyFactory();
         proxyFactory.setServiceName("RtdbService");
         proxyFactory.setProxyInterface(RtdbService.class);
-        proxyFactory.setClient(distributeClient);
+        proxyFactory.setClient(client);
         proxyFactory.setMessageConvert(thriftMessageConvert);
         return proxyFactory;
     }
